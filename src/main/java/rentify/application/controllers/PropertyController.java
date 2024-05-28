@@ -22,7 +22,7 @@ import rentify.application.dto.PropertyDto;
 import rentify.application.entities.Property;
 import rentify.application.services.PropertyService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "https://rentify-frontend-pink.vercel.app")
 @RestController
 public class PropertyController {
 

@@ -1,10 +1,7 @@
 
-FROM openjdk:17
-LABEL maintainer="charan"
-ADD target/rentify-prjct.jar rentify-prjct
-ENV MYSQL_DATABASE=rentify
-ENV MYSQL_USER=root
-ENV MYSQL_PASSWORD=root
-ENV MYSQL_URL=jdbc:mysql://mysql-hostname:3306/rentify
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/rentify-prjct"]
+FROM maven:3-eclipse-temurin-17 AS build
+COPY . .
+RUN mvn clean package -DskipTests
+FROM eclipse-temurin:17-alpine
+COPY --from=build /target/rentify-prjct.jar rentify-prjct.jar
+ENTRYPOINT ["java","-Dspring.profiles.active=render","-jar","rentify-prjct.jar"]

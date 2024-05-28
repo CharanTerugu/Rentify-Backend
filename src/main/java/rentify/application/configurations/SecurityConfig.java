@@ -1,6 +1,7 @@
 package rentify.application.configurations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,8 +20,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import rentify.application.filters.JwtAuthFilter;
 import rentify.application.services.serviceimplementations.UserUserDetailsService;
-
-
+import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.cors.CorsConfiguration;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -73,6 +74,17 @@ JwtAuthFilter authFilter;
 		return config.getAuthenticationManager();
 	}
 	
+	@Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("https://rentify-frontend-pink.vercel.app"); // Allow all origins
+        config.addAllowedHeader("*"); // Allow all headers
+        config.addAllowedMethod("*"); // Allow all HTTP methods
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
 	
 	
 }

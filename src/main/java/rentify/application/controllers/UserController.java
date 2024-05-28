@@ -15,7 +15,7 @@ import rentify.application.dto.AuthRequest;
 import rentify.application.entities.User;
 import rentify.application.services.UserService;
 import rentify.application.services.serviceimplementations.JwtService;
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "https://rentify-frontend-pink.vercel.app")
 @RestController
 public class UserController {
 
