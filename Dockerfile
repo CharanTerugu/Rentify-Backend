@@ -1,4 +1,10 @@
-FROM openjdk:20
+
+FROM openjdk:17
 LABEL maintainer="charan"
-ADD target/Rentify-1.jar rentify.jar
-ENTRYPOINT ["java","-jar","rentify.jar"]
+ADD target/rentify-prjct.jar rentify-prjct
+ENV MYSQL_DATABASE=rentify
+ENV MYSQL_USER=root
+ENV MYSQL_PASSWORD=root
+ENV MYSQL_URL=jdbc:mysql://mysql-hostname:3306/rentify
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/rentify-prjct"]

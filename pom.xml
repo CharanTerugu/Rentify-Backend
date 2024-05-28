@@ -76,6 +76,8 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>rentify-prjct</finalName>
 	</build>
+	
 
 </project>
